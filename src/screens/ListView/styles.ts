@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
   scrollView: {
     marginTop: 64,
   },
+  loadingContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default styles;

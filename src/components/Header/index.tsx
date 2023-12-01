@@ -4,7 +4,11 @@ import { Text, View, TouchableOpacity } from "react-native";
 import colors from "../../constants/colors";
 import { BookMark, Profile } from "../../icons";
 
-const Header = () => {
+const Header = ({
+  onBookMarkPress,
+}: {
+  onBookMarkPress: (isActive: boolean) => void;
+}) => {
   const [isBookMarkActive, setIsBookMarkActive] = useState(false);
 
   return (
@@ -13,7 +17,10 @@ const Header = () => {
       <View>
         <View style={styles.iconContainer}>
           <TouchableOpacity
-            onPress={() => setIsBookMarkActive(!isBookMarkActive)}
+            onPress={() => {
+              setIsBookMarkActive(!isBookMarkActive);
+              onBookMarkPress(!isBookMarkActive);
+            }}
             style={{ marginRight: 8 }}
           >
             <BookMark fill={isBookMarkActive ? colors.white : "none"} />
@@ -35,6 +42,7 @@ const styles = StyleSheet.create({
     height: 64,
     paddingHorizontal: 24,
     backgroundColor: colors.lightGreen,
+    zIndex: 2,
   },
   title: {
     fontSize: 24,

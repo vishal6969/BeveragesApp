@@ -1,9 +1,10 @@
 export interface IconI {
-    stroke?: string;
-    fill?: string;
-    height?: number;
-    width?: number;
+  stroke?: string;
+  fill?: string;
+  height?: number;
+  width?: number;
 }
 
-export { default as BookMark } from './BookMark';
-export { default as Profile } from './Profile';
+export { default as BookMark } from "./BookMark";
+export { default as Profile } from "./Profile";
+export { default as SadEmoji } from "./SadEmoji";

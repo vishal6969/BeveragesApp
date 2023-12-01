@@ -1,21 +1,30 @@
-import * as React from "react";
-import { View, Text, Image } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { BookMark } from "../../icons";
 import colors from "../../constants/colors";
+import { DataI } from "../../constants/interface";
 
 interface BeverageCardI {
+  id: number;
   name: string;
   tagline: string;
   description: string;
   imageUrl: string;
+  isBookMarked: boolean;
+  saveCard: (cardData: DataI) => void;
+  removeCard: (id: number) => void;
 }
 
 const BeverageCard = ({
+  id,
   name,
   tagline,
   description,
   imageUrl,
+  isBookMarked,
+  saveCard,
+  removeCard,
 }: BeverageCardI) => {
   return (
     <View style={styles.container}>
@@ -36,7 +45,20 @@ const BeverageCard = ({
           </Text>
         </View>
       </View>
-      <BookMark stroke={colors.black} />
+      <TouchableOpacity
+        onPress={() => {
+          if (isBookMarked) {
+            removeCard(id);
+          } else {
+            saveCard({ name, tagline, description, id, imageUrl });
+          }
+        }}
+      >
+        <BookMark
+          stroke={colors.black}
+          fill={isBookMarked ? colors.lightGreen : "none"}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
